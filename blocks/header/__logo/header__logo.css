@@ -2,11 +2,19 @@
     width: 142px;
     height: 33px;
     margin-top: 45px;
-    transition: margin-left .3s ease-in-out;
+    transition: margin-left .3s ease-in-out, width .3s ease-in-out, height .3s ease-in-out;
 }
 
 @media screen and (max-width: 880px) {
     .header__logo {
+        margin-left: 18px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .header__logo {
         margin-left: 27px;
+        margin-top: 28px;
+        width: calc(142px*0.73);
+        height: calc(33px*0.73);
     }
 }

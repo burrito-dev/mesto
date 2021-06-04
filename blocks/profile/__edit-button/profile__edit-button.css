@@ -9,3 +9,9 @@
     box-sizing: border-box;
     margin-left: 16px;
 }
+@media screen and (max-width: 420px) {
+    .profile__edit-button {
+        width: 18px;
+        height: 18px;
+    }
+}

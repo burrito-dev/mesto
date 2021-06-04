@@ -1,4 +1,10 @@
 .header {
     border-bottom: 1px solid #545454;
     height: 119px;
+    transition: height 0.3s ease-in-out;
+}
+@media screen and (max-width: 420px) {
+    .header {
+        height: 84px;
+    }
 }

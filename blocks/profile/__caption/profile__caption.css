@@ -6,3 +6,11 @@
     margin-bottom: 0;
     margin-top: 16px;
 }
+@media screen and (max-width: 420px) {
+    .profile__caption {
+        margin-top: 14px;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+    }
+}
