@@ -13,3 +13,8 @@
     display: flex;
     flex-direction: column;
 }
+@media screen and (max-width: 420px) {
+    .edit-form {
+        padding: 25px 22px;
+    }
+}

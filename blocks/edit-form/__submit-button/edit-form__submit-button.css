@@ -11,3 +11,10 @@
     line-height: 22px;
     text-align: center;
 }
+@media screen and (max-width: 420px) {
+    .edit-form__submit-button {
+        font-size: 14px;
+        line-height: 17px;
+        height: 50px;
+    }
+}

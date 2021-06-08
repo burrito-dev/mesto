@@ -34,8 +34,7 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
-@import url(../blocks/pop-up/pop-up.css);
-/*@import url(../blocks/pop-up/__overlay/pop-up__overlay.css);*/
+@import url(../blocks/pop-up-overlay/pop-up-overlay.css);
 
 @import url(../blocks/edit-form/edit-form.css);
 @import url(../blocks/edit-form/__close-button/edit-form__close-button.css);
