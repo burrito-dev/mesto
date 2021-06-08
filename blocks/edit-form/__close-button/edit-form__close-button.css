@@ -1,0 +1,20 @@
+.edit-form__close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 40px;
+    transform: translate(100%, -100%) rotate(45deg);
+    background-color: transparent;
+    background-image: url(../../../images/add-cross.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: none;
+    padding: 0;
+}
+@media screen and (max-width: 520px) {
+    .edit-form__close-button {
+        transform: translate(0, -100%) rotate(45deg);
+    }
+}
