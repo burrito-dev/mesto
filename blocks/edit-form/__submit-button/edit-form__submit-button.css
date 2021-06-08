@@ -11,6 +11,9 @@
     line-height: 22px;
     text-align: center;
 }
+.edit-form__submit-button:hover {
+    opacity: 0.8;
+}
 @media screen and (max-width: 420px) {
     .edit-form__submit-button {
         font-size: 14px;
