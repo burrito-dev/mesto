@@ -19,7 +19,7 @@
 }
 @media screen and (max-width: 520px) {
     .edit-form__close-button {
-        transform: translate(0, -150%) rotate(45deg);
+        transform: translate(-10%, -160%) rotate(45deg);
         height: 26px;
         width: 26px;
     }
