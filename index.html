@@ -13,72 +13,74 @@
         <img src="./images/header_logo.svg" alt="Лого место" class="header__logo">
     </header>
     <main class="main page__main">
-        <div class="profile page__section">
+        <section class="profile ">
             <div class="profile__zone">
                 <img src="./images/profile_avatar.jpg" alt="Аватар" class="profile__avatar">
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-button"></button>
+                    <button aria-label="редактировать"  type="button" class="profile__edit-button"></button>
                     <p class="profile__job">Исследователь океана</p>
                 </div>
             </div>
-            <button type="button" class="profile__add-button"></button>
-        </div>
-        <ul class="elements page__section page__elements">
-            <li class="element">
-                <img src="./images/element_image.jpg" alt="Карачаевск" class="element__image">
-                <div class="element__caption">
-                    <h2 class="element__header">Карачаево-Черкесия</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/element_image.jpg" alt="Эльбрус" class="element__image">
-                <div class="element__caption">
-                    <h2 class="element__header">Гора Эльбрус</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/element_image.jpg" alt="Домбай" class="element__image">
-                <div class="element__caption">
-                    <h2 class="element__header">Домбай</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/element_image.jpg" alt="Эльбрус" class="element__image">
-                <div class="element__caption">
-                    <h2 class="element__header">Гора Эльбрус</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/element_image.jpg" alt="Домбай" class="element__image">
-                <div class="element__caption">
-                    <h2 class="element__header">Домбай</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img src="./images/element_image.jpg" alt="Карачаевск" class="element__image">
-                <div class="element__caption">
-                    <h2 class="element__header">Карачаево-Черкесия</h2>
-                    <button type="button" class="element__like"></button>
-                </div>
-            </li>
-        </ul>
+            <button aria-label="Добавить"  type="button" class="profile__add-button"></button>
+        </section>
+        <section class="elements page__elements">
+            <ul class="elements__list">
+                <li class="element">
+                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
+                    <div class="element__caption">
+                        <h2 class="element__header">Карачаево-Черкесия</h2>
+                        <button aria-label="лайк"  type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
+                    <div class="element__caption">
+                        <h2 class="element__header">Гора Эльбрус</h2>
+                        <button aria-label="лайк"  type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
+                    <div class="element__caption">
+                        <h2 class="element__header">Домбай</h2>
+                        <button aria-label="лайк"  type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
+                    <div class="element__caption">
+                        <h2 class="element__header">Гора Эльбрус</h2>
+                        <button aria-label="лайк"  type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
+                    <div class="element__caption">
+                        <h2 class="element__header">Домбай</h2>
+                        <button aria-label="лайк"  type="button" class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
+                    <div class="element__caption">
+                        <h2 class="element__header">Карачаево-Черкесия</h2>
+                        <button aria-label="лайк"  type="button" class="element__like"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
     </main>
-    <footer class="footer page__section">
+    <footer class="footer page__footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <div class="pop-up">
-        <form class="edit-form">
-            <button type="button" class="edit-form__close-button"></button>
-            <h2 class="edit-form__header">Редактировать профиль</h2>
-            <input type="text" class="edit-form__text-input edit-form__name-input">
-            <input type="text" class="edit-form__text-input edit-form__job-input">
-            <button type="submit" class="edit-form__submit-button edit-form__submit-button_action_save">Сохранить</button>
+        <form class="edit-form" method="POST" name="editForm">
+            <button aria-label="закрыть"  type="button" class="edit-form__close-button"></button>
+            <h3 class="edit-form__header">Редактировать профиль</h3>
+            <input type="text" placeholder="Имя" name="textInputName" class="edit-form__text-input edit-form__text-input_type_name">
+            <input type="text" placeholder="О себе" name="textInputJob" class="edit-form__text-input edit-form__text-input_type_job">
+            <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Сохранить</button>
         </form>
     </div>
   <script src="./scripts/script.js"></script>

@@ -3,6 +3,12 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
+    max-width: calc(100% - 170px);
+}
+@media screen and (max-width: 680px) {
+    .profile__zone {
+        max-width: 100%;
+    }
 }
 @media screen and (max-width: 520px) {
     .profile__zone {

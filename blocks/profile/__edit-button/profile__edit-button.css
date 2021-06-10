@@ -9,6 +9,7 @@
     box-sizing: border-box;
     align-self: end;
     margin-bottom: 8px;
+    transition: opacity .3s ease-in-out;
 }
 .profile__edit-button:hover {
     opacity: 0.6;

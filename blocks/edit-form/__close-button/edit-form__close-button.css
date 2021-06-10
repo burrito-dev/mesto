@@ -12,6 +12,7 @@
     background-size: contain;
     border: none;
     padding: 0;
+    transition: opacity .3s ease-in-out;
 }
 .edit-form__close-button:hover {
     opacity: 0.6;
