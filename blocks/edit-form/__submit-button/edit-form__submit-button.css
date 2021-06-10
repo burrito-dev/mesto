@@ -13,6 +13,7 @@
 }
 .edit-form__submit-button:hover {
     opacity: 0.8;
+    cursor: pointer;
 }
 @media screen and (max-width: 420px) {
     .edit-form__submit-button {
