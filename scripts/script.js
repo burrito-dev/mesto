@@ -1,14 +1,14 @@
-let popUpElement = document.querySelector('.pop-up')
-let formElement = popUpElement.querySelector('.edit-form')
+let popUpElement = document.querySelector('.pop-up');
+let formElement = popUpElement.querySelector('.edit-form');
 
-let profileName = document.querySelector('.profile__name')
-let profileJob = document.querySelector('.profile__job')
+let profileName = document.querySelector('.profile__name');
+let profileJob = document.querySelector('.profile__job');
 
-let nameInput = formElement.querySelector('.edit-form__text-input_type_name')
-let jobInput = formElement.querySelector('.edit-form__text-input_type_job')
+let nameInput = formElement.querySelector('.edit-form__text-input_type_name');
+let jobInput = formElement.querySelector('.edit-form__text-input_type_job');
 
-let closeButton = formElement.querySelector('.edit-form__close-button')
-let editButton = document.querySelector('.profile__edit-button')
+let closeButton = formElement.querySelector('.edit-form__close-button');
+let editButton = document.querySelector('.profile__edit-button');
 
 function closeFormHandler () {
     popUpElement.classList.remove('pop-up_opened');
