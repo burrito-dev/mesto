@@ -25,56 +25,14 @@
             <button aria-label="Добавить"  type="button" class="profile__add-button"></button>
         </section>
         <section class="elements page__elements">
-            <ul class="elements__list">
-                <li class="element">
-                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
-                    <div class="element__caption">
-                        <h2 class="element__header">Карачаево-Черкесия</h2>
-                        <button aria-label="лайк"  type="button" class="element__like"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
-                    <div class="element__caption">
-                        <h2 class="element__header">Гора Эльбрус</h2>
-                        <button aria-label="лайк"  type="button" class="element__like"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
-                    <div class="element__caption">
-                        <h2 class="element__header">Домбай</h2>
-                        <button aria-label="лайк"  type="button" class="element__like"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
-                    <div class="element__caption">
-                        <h2 class="element__header">Гора Эльбрус</h2>
-                        <button aria-label="лайк"  type="button" class="element__like"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
-                    <div class="element__caption">
-                        <h2 class="element__header">Домбай</h2>
-                        <button aria-label="лайк"  type="button" class="element__like"></button>
-                    </div>
-                </li>
-                <li class="element">
-                    <img src="./images/element_image.jpg" alt="Церковь" class="element__image">
-                    <div class="element__caption">
-                        <h2 class="element__header">Карачаево-Черкесия</h2>
-                        <button aria-label="лайк"  type="button" class="element__like"></button>
-                    </div>
-                </li>
+            <ul class="elements__list" id="elements__list">
             </ul>
         </section>
     </main>
     <footer class="footer page__footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="pop-up">
+    <div class="pop-up" id="edit-profile-pop-up">
         <form class="edit-form" method="POST" name="editForm">
             <button aria-label="закрыть"  type="button" class="edit-form__close-button"></button>
             <h3 class="edit-form__header">Редактировать профиль</h3>
@@ -83,6 +41,35 @@
             <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Сохранить</button>
         </form>
     </div>
-  <script src="./scripts/script.js"></script>
+    <div class="pop-up" id="create-element-pop-up">
+        <form class="edit-form" method="POST" name="editForm">
+            <button aria-label="закрыть"  type="button" class="edit-form__close-button"></button>
+            <h3 class="edit-form__header">Новое место</h3>
+            <input type="text" placeholder="Название" name="textInputName" class="edit-form__text-input edit-form__text-input_type_element-name">
+            <input type="text" placeholder="Ссылка на картинку" name="textInputJob" class="edit-form__text-input edit-form__text-input_element-img-link">
+            <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Создать</button>
+        </form>
+    </div>
+    <template id="element-template">
+        <li class="element">
+            <img src="./images/element_trash.svg" alt="помойка" class="element__trash">
+            <div style="background-image:url('./images/element_image.jpg');" class="element__image"></div>
+            <div class="element__caption">
+                <h2 class="element__header">Карачаево-Черкесия</h2>
+                <button aria-label="лайк"  type="button" class="element__like"></button>
+            </div>
+        </li>
+    </template>
+    <template id="large-photo-template">
+        <div class="pop-up">
+            <figure class="pop-up-figure">
+                <button aria-label="закрыть"  type="button" class="pop-up-figure__close-button"></button>
+                <img src="./images/element_image.jpg" alt="по умолчанию" class="pop-up-figure__image">
+                <figcaption class="pop-up-figure__caption"></figcaption>
+            </figure>
+        </div>
+    </template>
+    <script src="./scripts/edit-profile.js"></script>
+    <script src="./scripts/elements.js"></script>
 </body>
 </html>

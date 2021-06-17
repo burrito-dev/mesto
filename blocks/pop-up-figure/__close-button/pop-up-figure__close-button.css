@@ -1,0 +1,27 @@
+.pop-up-figure__close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 40px;
+    transform: translate(100%, -100%) rotate(45deg);
+    background-color: transparent;
+    background-image: url(../../../images/add-cross.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: none;
+    padding: 0;
+    transition: opacity .3s ease-in-out;
+}
+.pop-up-figure__close-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+@media screen and (max-width: 520px) {
+    .pop-up-figure__close-button {
+        transform: translate(-10%, -160%) rotate(45deg);
+        height: 26px;
+        width: 26px;
+    }
+}

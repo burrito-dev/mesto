@@ -7,8 +7,6 @@
 @import url(../blocks/page/__elements/page__elements.css);
 @import url(../blocks/page/__footer/page__footer.css);
 
-
-
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 
@@ -28,11 +26,18 @@
 @import url(../blocks/element/__caption/element__caption.css);
 @import url(../blocks/element/__header/element__header.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/_active/element__like_active.css);
+@import url(../blocks/element/__trash/element__trash.css);
 
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 @import url(../blocks/pop-up/pop-up.css);
 @import url(../blocks/pop-up/_opened/pop-up_opened.css);
+
+@import url(../blocks/pop-up-figure/pop-up-figure.css);
+@import url(../blocks/pop-up-figure/__close-button/pop-up-figure__close-button.css);
+@import url(../blocks/pop-up-figure/__image/pop-up-figure__image.css);
+@import url(../blocks/pop-up-figure/__caption/pop-up-figure__caption.css);
 
 @import url(../blocks/edit-form/edit-form.css);
 @import url(../blocks/edit-form/__close-button/edit-form__close-button.css);
