@@ -3,4 +3,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     padding-bottom: 100%;
+    transition: opacity .3s ease-in-out;
+    cursor: pointer;
+}
+.element__image:hover {
+    opacity: 0.9;
 }

@@ -30,7 +30,6 @@ function imagePopUpCloseHandler(evt) {
 
 function addLargePopUp(element, name, link) {
     const popUp = imagePopUpTemplate.querySelector('.pop-up').cloneNode(true);
-    popUp.style.zIndex = '1';
     popUp.querySelector('.pop-up-figure__close-button').addEventListener('click', imagePopUpCloseHandler);
     popUp.querySelector('.pop-up-figure__image').src = link;
     popUp.querySelector('.pop-up-figure__caption').textContent = name;
