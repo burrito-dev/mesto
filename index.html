@@ -50,6 +50,13 @@
             <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Создать</button>
         </form>
     </div>
+    <div class="pop-up" id="large-image-pop-up">
+        <figure class="pop-up-figure">
+            <button aria-label="закрыть"  type="button" class="pop-up-figure__close-button"></button>
+            <img src="https://carolinadojo.com/wp-content/uploads/2017/04/default-image-300x225.jpg" alt="по умолчанию" class="pop-up-figure__image">
+            <figcaption class="pop-up-figure__caption"></figcaption>
+        </figure>
+    </div>
     <template id="element-template">
         <li class="element">
             <img src="./images/element_trash.svg" alt="помойка" class="element__trash">
@@ -60,16 +67,7 @@
             </div>
         </li>
     </template>
-    <template id="large-photo-template">
-        <div class="pop-up">
-            <figure class="pop-up-figure">
-                <button aria-label="закрыть"  type="button" class="pop-up-figure__close-button"></button>
-                <img src="./images/element_image.jpg" alt="по умолчанию" class="pop-up-figure__image">
-                <figcaption class="pop-up-figure__caption"></figcaption>
-            </figure>
-        </div>
-    </template>
-    <script src="./scripts/edit-profile.js"></script>
-    <script src="./scripts/elements.js"></script>
+    <script src="./scripts/init.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>
