@@ -79,8 +79,7 @@ function submitCreateElementFormHandler(evt) {
     evt.preventDefault();
     addNewElement(createElementNameInput.value, createElementImgLinkInput.value);
     closePopUpHandler(evt);
-    createElementNameInput.value = '';
-    createElementImgLinkInput.value = '';
+    createElementForm.reset();
 }
 
 
