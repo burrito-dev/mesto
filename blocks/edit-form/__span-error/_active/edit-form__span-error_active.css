@@ -1,0 +1,6 @@
+.edit-form__span-error_active {
+    margin-bottom: 13px;
+}
+.edit-form__span-error_active:last-of-type {
+    margin-bottom: 31px;
+}

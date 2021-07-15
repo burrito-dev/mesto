@@ -32,25 +32,29 @@
     <footer class="footer page__footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <div class="pop-up" id="edit-profile-pop-up">
-        <form class="edit-form" method="POST" name="editForm">
+    <div class="pop-up" id="edit-profile-pop-up" tabindex="0">
+        <form class="edit-form" method="POST" name="editProfile" novalidate>
             <button aria-label="закрыть"  type="button" class="edit-form__close-button"></button>
             <h3 class="edit-form__header">Редактировать профиль</h3>
-            <input type="text" placeholder="Имя" name="textInputName" class="edit-form__text-input edit-form__text-input_type_name">
-            <input type="text" placeholder="О себе" name="textInputJob" class="edit-form__text-input edit-form__text-input_type_job">
+            <input type="text" placeholder="Имя" class="edit-form__text-input edit-form__text-input_type_name" id="edit-profile-name-input" required minlength="2" maxlength="40">
+            <span class="edit-form__span-error" id="edit-profile-name-input-error"></span>
+            <input type="text" placeholder="О себе" class="edit-form__text-input edit-form__text-input_type_job" id="edit-profile-job-input" required minlength="2" maxlength="200">
+            <span class="edit-form__span-error" id="edit-profile-job-input-error"></span>
             <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Сохранить</button>
         </form>
     </div>
-    <div class="pop-up" id="create-element-pop-up">
-        <form class="edit-form" method="POST" name="editForm">
+    <div class="pop-up" id="create-element-pop-up" tabindex="0">
+        <form class="edit-form" method="POST" name="createElement" novalidate>
             <button aria-label="закрыть"  type="button" class="edit-form__close-button"></button>
             <h3 class="edit-form__header">Новое место</h3>
-            <input type="text" placeholder="Название" name="textInputName" class="edit-form__text-input edit-form__text-input_type_element-name">
-            <input type="text" placeholder="Ссылка на картинку" name="textInputJob" class="edit-form__text-input edit-form__text-input_element-img-link">
+            <input type="text" placeholder="Название" name="textInputName" class="edit-form__text-input edit-form__text-input_type_element-name" id="create-element-name-input" required minlength="2" maxlength="30">
+            <span class="edit-form__span-error" id="create-element-name-input-error"></span>
+            <input type="url" placeholder="Ссылка на картинку" class="edit-form__text-input edit-form__text-input_element-img-link" id="create-element-url-input" required>
+            <span class="edit-form__span-error" id="create-element-url-input-error"></span>
             <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Создать</button>
         </form>
     </div>
-    <div class="pop-up" id="large-image-pop-up">
+    <div class="pop-up" id="large-image-pop-up" tabindex="0">
         <figure class="pop-up-figure">
             <button aria-label="закрыть"  type="button" class="pop-up-figure__close-button"></button>
             <img src="https://carolinadojo.com/wp-content/uploads/2017/04/default-image-300x225.jpg" alt="по умолчанию" class="pop-up-figure__image">
@@ -69,5 +73,6 @@
     </template>
     <script src="./scripts/init.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>

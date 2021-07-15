@@ -43,4 +43,8 @@
 @import url(../blocks/edit-form/__close-button/edit-form__close-button.css);
 @import url(../blocks/edit-form/__header/edit-form__header.css);
 @import url(../blocks/edit-form/__text-input/edit-form__text-input.css);
+@import url(../blocks/edit-form/__text-input/_error/edit-form__text-input_error.css);
+@import url(../blocks/edit-form/__span-error/edit-form__span-error.css);
+@import url(../blocks/edit-form/__span-error/_active/edit-form__span-error_active.css);
 @import url(../blocks/edit-form/__submit-button/edit-form__submit-button.css);
+@import url(../blocks/edit-form/__submit-button/_disabled/edit-form__submit-button_disabled.css);

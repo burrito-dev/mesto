@@ -1,0 +1,7 @@
+.edit-form__text-input_error {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #FF0000;
+}
+.edit-form__text-input_error:last-of-type {
+    margin-bottom: 5px;
+}

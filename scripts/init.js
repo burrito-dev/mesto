@@ -3,7 +3,7 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
 const editProfilePopUp = document.querySelector('#edit-profile-pop-up');
-const editProfileForm = editProfilePopUp.querySelector('.edit-form');
+const editProfileForm = document.forms.editProfile;
 const editProfileNameInput = editProfileForm.querySelector('.edit-form__text-input_type_name');
 const editProfileJobInput = editProfileForm.querySelector('.edit-form__text-input_type_job');
 const editProfileCloseButton = editProfileForm.querySelector('.edit-form__close-button');
@@ -15,7 +15,7 @@ const elementTemplate = document.querySelector('#element-template').content;
 
 const createElementFormOpenButton = document.querySelector('.profile__add-button');
 const createElementPopUp = document.querySelector('#create-element-pop-up');
-const createElementForm = createElementPopUp.querySelector('.edit-form');
+const createElementForm = document.forms.createElement;
 const createElementNameInput = createElementForm.querySelector('.edit-form__text-input_type_element-name');
 const createElementImgLinkInput = createElementForm.querySelector('.edit-form__text-input_element-img-link');
 const createElementFormCloseButton = createElementForm.querySelector('.edit-form__close-button');

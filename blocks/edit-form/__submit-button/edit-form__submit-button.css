@@ -12,6 +12,7 @@
     text-align: center;
     transition: opacity .3s ease-in-out;
 }
+
 .edit-form__submit-button:hover {
     opacity: 0.8;
     cursor: pointer;
