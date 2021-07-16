@@ -2,26 +2,21 @@ function submitEditProfileFormHandler (evt) {
     evt.preventDefault();
     profileName.textContent = editProfileNameInput.value;
     profileJob.textContent = editProfileJobInput.value;
-    closePopUpHandler(evt)
+    closePopUp(evt.target.closest('.pop-up'));
 }
 
-// function selectFirstInput(object) {
-//     const inputField = object.querySelector('.edit-form__text-input');
-//     inputField.focus();
-//     inputField.select();
-// }
 
 function toggleButtonStateFromPopUp(popUpElement) {
     const inputElementList = Array.from(popUpElement.querySelectorAll('.edit-form__text-input'));
     const buttonElement = popUpElement.querySelector('.edit-form__submit-button');
     toggleButtonState(inputElementList, buttonElement, 'edit-form__submit-button_disabled');
 }
+
 function openEditProfileFormHandler() {
     editProfileNameInput.value = profileName.textContent;
     editProfileJobInput.value = profileJob.textContent;
     openPopUp(editProfilePopUp);
     toggleButtonStateFromPopUp(editProfilePopUp);
-    // selectFirstInput(editProfilePopUp);
 
 }
 
@@ -36,30 +31,29 @@ function elementTrashHandler(evt) {
 }
 
 
-function openLargePhoto(img_src, caption) {
-    imagePopUpImage.src = img_src;
+function openLargePhoto(imgSrc, caption) {
+    imagePopUpImage.src = imgSrc;
     imagePopUpCaption.textContent = caption;
     openPopUp(imagePopUp);
-    toggleButtonStateFromPopUp(editProfilePopUp);
 }
 
 
 function elementImageClickHandler(evt) {
     const element = evt.target.closest('.element');
-    const element_image_url = evt.target.style.backgroundImage.slice(5,-2);
-    const element_image_caption = element.querySelector('.element__caption').textContent;
-    openLargePhoto(element_image_url, element_image_caption);
+    const elementImageUrl = evt.target.style.backgroundImage.slice(5,-2);
+    const elementImageCaption = element.querySelector('.element__caption').textContent;
+    openLargePhoto(elementImageUrl, elementImageCaption);
 }
 
 
-function createNewElement(name, link) {
+function createNewElement(elementObj) {
     const element = elementTemplate.querySelector('.element').cloneNode(true);
 
     element.querySelector('.element__like').addEventListener('click', elementLikeHandler);
     element.querySelector('.element__trash').addEventListener('click', elementTrashHandler);
     element.querySelector('.element__image').addEventListener('click', elementImageClickHandler);
-    element.querySelector('.element__image').style.backgroundImage = `url(${link})`;
-    element.querySelector('.element__header').textContent = name;
+    element.querySelector('.element__image').style.backgroundImage = `url(${elementObj.link})`;
+    element.querySelector('.element__header').textContent = elementObj.name;
     return element
 }
 
@@ -69,17 +63,21 @@ function extendElements(element) {
 }
 
 
-function addNewElement(name, link) {
-    extendElements(createNewElement(name, link));
+function addNewElement(elementObj) {
+    extendElements(createNewElement(elementObj));
 }
 
-function openPopUp(popUp) {
-    popUp.classList.add('pop-up_opened');
+function openPopUp(popUpElement) {
+    popUpElement.classList.add('pop-up_opened');
+    popUpElement.addEventListener('keydown', closeFormOnEscapeHandler);
+    popUpElement.addEventListener('click', closePopUpOnClickHandler);
 }
 
 
-function closePopUp(popUp) {
-    popUp.classList.remove('pop-up_opened');
+function closePopUp(popUpElement) {
+    popUpElement.classList.remove('pop-up_opened');
+    popUpElement.removeEventListener('keydown', closeFormOnEscapeHandler);
+    popUpElement.removeEventListener('click', closePopUpOnClickHandler);
 }
 
 
@@ -90,8 +88,8 @@ function closePopUpHandler(evt) {
 
 function submitCreateElementFormHandler(evt) {
     evt.preventDefault();
-    addNewElement(createElementNameInput.value, createElementImgLinkInput.value);
-    closePopUpHandler(evt);
+    addNewElement({name: createElementNameInput.value, link: createElementImgLinkInput.value});
+    closePopUp(evt.target.closest('.pop-up'));
     createElementForm.reset();
 }
 
@@ -99,12 +97,11 @@ function submitCreateElementFormHandler(evt) {
 function openCreateElementFormHandler() {
     openPopUp(createElementPopUp);
     toggleButtonStateFromPopUp(createElementPopUp);
-    // selectFirstInput(createElementPopUp);
 }
 
 // init elements
 function initElements() {
-    initialCards.forEach(value => addNewElement(value.name, value.link))
+    initialCards.forEach(value => addNewElement(value))
 }
 
 
@@ -121,13 +118,10 @@ function closePopUpOnClickHandler(evt) {
 }
 
 
-function setFormsCommonBehavior(formList) {
-    formList.forEach((formElement) => {
-        const closeButton = formElement.querySelector('.edit-form__close-button');
-        // close PopUp by clicking
+function setPopUpCommonBehavior(popUpList) {
+    popUpList.forEach((popUpElement) => {
+        const closeButton = popUpElement.querySelector('.pop-up__close-button');
         closeButton.addEventListener('click', closePopUpHandler);
-        formElement.closest('.pop-up').addEventListener('keydown', closeFormOnEscapeHandler);
-        formElement.closest('.pop-up').addEventListener('click', closePopUpOnClickHandler);
     })
 }
 
@@ -143,5 +137,5 @@ imagePopUp.addEventListener('keydown', closeFormOnEscapeHandler);
 imagePopUp.addEventListener('click', closePopUpOnClickHandler);
 imagePopUpCloseButton.addEventListener('click', closePopUpHandler)
 
-setFormsCommonBehavior(Array.from(document.forms));
+setPopUpCommonBehavior(Array.from(document.querySelectorAll('.pop-up')));
 initElements();

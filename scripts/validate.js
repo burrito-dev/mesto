@@ -1,18 +1,3 @@
-
-// function setInputValidation(inputElement, validationSettings) {
-//     inputElement.addEventListener((evt) => {
-//         if (!inputElement.validity.valid) {
-//             inputElement.
-//         }
-//     })
-// }
-
-function validateInputHandler(evt) {
-    if (!evt.target.validity.valid) {
-        evt.target()
-    }
-}
-
 function formInputElementShowError(inputElement, spanErrorElement, inputErrorClass) {
     inputElement.classList.add(inputErrorClass);
     spanErrorElement.classList.add(`edit-form__span-error_active`);
