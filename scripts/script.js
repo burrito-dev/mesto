@@ -33,6 +33,7 @@ function elementTrashHandler(evt) {
 
 function openLargePhoto(imgSrc, caption) {
     imagePopUpImage.src = imgSrc;
+    imagePopUpImage.alt = caption;
     imagePopUpCaption.textContent = caption;
     openPopUp(imagePopUp);
 }
@@ -41,7 +42,7 @@ function openLargePhoto(imgSrc, caption) {
 function elementImageClickHandler(evt) {
     const element = evt.target.closest('.element');
     const elementImageUrl = evt.target.style.backgroundImage.slice(5,-2);
-    const elementImageCaption = element.querySelector('.element__caption').textContent;
+    const elementImageCaption = element.querySelector('.element__header').textContent;
     openLargePhoto(elementImageUrl, elementImageCaption);
 }
 
@@ -69,20 +70,20 @@ function addNewElement(elementObj) {
 
 function openPopUp(popUpElement) {
     popUpElement.classList.add('pop-up_opened');
-    popUpElement.addEventListener('keydown', closeFormOnEscapeHandler);
+    document.addEventListener('keydown', closeFormOnEscapeHandler);
     popUpElement.addEventListener('click', closePopUpOnClickHandler);
 }
 
 
 function closePopUp(popUpElement) {
     popUpElement.classList.remove('pop-up_opened');
-    popUpElement.removeEventListener('keydown', closeFormOnEscapeHandler);
+    document.removeEventListener('keydown', closeFormOnEscapeHandler);
     popUpElement.removeEventListener('click', closePopUpOnClickHandler);
 }
 
 
 function closePopUpHandler(evt) {
-    closePopUp(evt.target.closest('.pop-up'));
+    closePopUp(document.querySelector('.pop-up_opened'));
 }
 
 
@@ -133,9 +134,6 @@ editProfileForm.addEventListener('submit', submitEditProfileFormHandler);
 createElementFormOpenButton.addEventListener('click', openCreateElementFormHandler);
 createElementForm.addEventListener('submit', submitCreateElementFormHandler);
 
-imagePopUp.addEventListener('keydown', closeFormOnEscapeHandler);
-imagePopUp.addEventListener('click', closePopUpOnClickHandler);
-imagePopUpCloseButton.addEventListener('click', closePopUpHandler)
 
 setPopUpCommonBehavior(Array.from(document.querySelectorAll('.pop-up')));
 initElements();
