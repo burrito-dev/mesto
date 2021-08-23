@@ -6,10 +6,10 @@ import {
     submitEditProfileFormHandler,
     openCreateElementFormHandler,
     submitCreateElementFormHandler,
-    setPopUpCommonBehavior
+    setPopUpCommonBehavior,
+    enableValidation,
+    initElements
 } from './functions.js'
-import {enableValidation} from "./FormValidator.js";
-import {initElements} from "./Card.js";
 
 editProfileOpenButton.addEventListener('click', openEditProfileFormHandler);
 editProfileForm.addEventListener('submit', submitEditProfileFormHandler);
@@ -28,5 +28,6 @@ enableValidation({
     submitButtonSelector: '.edit-form__submit-button',
     inactiveButtonClass: 'edit-form__submit-button_disabled',
     inputErrorClass: 'edit-form__text-input_error',
+    inputSpanErrorClass: '`edit-form__span-error_active`',
     errorClass: 'pop-up__error_visible'
 });

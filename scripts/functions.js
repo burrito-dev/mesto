@@ -1,38 +1,15 @@
 import {
     createElementForm,
     createElementImgLinkInput,
-    createElementNameInput, createElementPopUp,
+    createElementNameInput, createElementPopUp, editProfileForm,
     editProfileJobInput,
     editProfileNameInput,
-    editProfilePopUp,
+    editProfilePopUp, elements, initialCards,
     profileJob,
     profileName
 } from "./consts.js";
-import {addNewElement} from "./Card.js"
-
-function hasInvalidInput(inputElementList) {
-    return inputElementList.some(inputElement => {
-        return !inputElement.validity.valid;
-    });
-}
-
-
-function toggleButtonState(inputElementList, buttonElement, inactiveButtonClass) {
-  if (hasInvalidInput(inputElementList)) {
-    buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
-  } else {
-    buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
-  }
-}
-
-function toggleButtonStateFromPopUp(popUpElement) {
-    const inputElementList = Array.from(popUpElement.querySelectorAll('.edit-form__text-input'));
-    const buttonElement = popUpElement.querySelector('.edit-form__submit-button');
-    toggleButtonState(inputElementList, buttonElement, 'edit-form__submit-button_disabled');
-}
-
+import {FormValidator} from "./FormValidator.js"
+import {Card} from "./Card.js"
 
 function submitEditProfileFormHandler (evt) {
     evt.preventDefault();
@@ -47,8 +24,11 @@ function openEditProfileFormHandler() {
     editProfileNameInput.value = profileName.textContent;
     editProfileJobInput.value = profileJob.textContent;
     openPopUp(editProfilePopUp);
-    toggleButtonStateFromPopUp(editProfilePopUp);
-
+    new FormValidator({
+        inputSelector: '.edit-form__text-input',
+        submitButtonSelector: '.edit-form__submit-button',
+        inactiveButtonClass: 'edit-form__submit-button_disabled',
+    }, editProfileForm).toggleButtonState()
 }
 
 
@@ -82,7 +62,11 @@ function submitCreateElementFormHandler(evt) {
 
 function openCreateElementFormHandler() {
     openPopUp(createElementPopUp);
-    toggleButtonStateFromPopUp(createElementPopUp);
+    new FormValidator({
+        inputSelector: '.edit-form__text-input',
+        submitButtonSelector: '.edit-form__submit-button',
+        inactiveButtonClass: 'edit-form__submit-button_disabled',
+    }, createElementForm).toggleButtonState()
 }
 
 
@@ -106,12 +90,28 @@ function setPopUpCommonBehavior(popUpList) {
     })
 }
 
+// init elements
+function extendElements(element) {
+    elements.prepend(element);
+}
+function addNewElement(elementObj) {
+    extendElements(new Card(elementObj, '#element-template').create());
+}
+function initElements() {
+    initialCards.forEach(value => addNewElement(value))
+}
+
+function enableValidation(validationSettings) {
+    const formList = Array.from(document.querySelectorAll(validationSettings.formSelector));
+    formList.forEach(formElement => new FormValidator(validationSettings, formElement).enable());
+}
+
 export {
-    toggleButtonState,
     openEditProfileFormHandler,
     submitEditProfileFormHandler,
     openCreateElementFormHandler,
     submitCreateElementFormHandler,
     setPopUpCommonBehavior,
-    openPopUp
+    openPopUp,
+    initElements, enableValidation
 }

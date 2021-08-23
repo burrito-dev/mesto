@@ -1,21 +1,31 @@
-import {imagePopUp, imagePopUpImage, imagePopUpCaption, elements, initialCards} from './consts.js'
+import {imagePopUp, imagePopUpImage, imagePopUpCaption} from './consts.js'
 import {openPopUp} from "./functions.js";
+
 
 export class Card {
     constructor(data, templateSelector) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
+        this._element = this._getElementFromTemplate();
+        this._image = this._element.querySelector('.element__image');
+        this._title = this._element.querySelector('.element__header');
+        this._likeButton = this._element.querySelector('.element__like');
+        this._trashButton = this._element.querySelector('.element__trash');
+        // handlers
+        this._elementImageClickHandler = this._elementImageClickHandler.bind(this);
     }
     create() {
-        const element = this._getElementFromTemplate()
+        this._setEventListeners();
+        this._image.style.backgroundImage = `url(${this._link})`;
+        this._title.textContent = this._name;
+        return this._element
+    }
+    _setEventListeners() {
+        this._likeButton.addEventListener('click', this._elementLikeHandler);
+        this._trashButton.addEventListener('click', this._elementTrashHandler);
+        this._image.addEventListener('click', this._elementImageClickHandler);
 
-        element.querySelector('.element__like').addEventListener('click', this._elementLikeHandler);
-        element.querySelector('.element__trash').addEventListener('click', this._elementTrashHandler);
-        element.querySelector('.element__image').addEventListener('click', this._elementImageClickHandler);
-        element.querySelector('.element__image').style.backgroundImage = `url(${this._link})`;
-        element.querySelector('.element__header').textContent = this._name;
-        return element
     }
     _getElementFromTemplate() {
         return document
@@ -37,15 +47,4 @@ export class Card {
         imagePopUpCaption.textContent = this._name;
         openPopUp(imagePopUp);
     }
-}
-
-// init elements
-function extendElements(element) {
-    elements.prepend(element);
-}
-export function addNewElement(elementObj) {
-    extendElements(new Card(elementObj, '#element-template').create());
-}
-export function initElements() {
-    initialCards.forEach(value => addNewElement(value))
 }
