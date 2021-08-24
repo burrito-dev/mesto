@@ -1,3 +1,4 @@
+import {FormValidator} from "./FormValidator.js";
 
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
@@ -7,6 +8,13 @@ export const editProfileForm = document.forms.editProfile;
 export const editProfileNameInput = editProfileForm.querySelector('.edit-form__text-input_type_name');
 export const editProfileJobInput = editProfileForm.querySelector('.edit-form__text-input_type_job');
 export const editProfileOpenButton = document.querySelector('.profile__edit-button');
+export const editProfileFormValidator = new FormValidator({
+    inputSelector: '.edit-form__text-input',
+    submitButtonSelector: '.edit-form__submit-button',
+    inactiveButtonClass: 'edit-form__submit-button_disabled',
+    inputErrorClass: 'edit-form__text-input_error',
+    inputSpanErrorClass: '`edit-form__span-error_active`'
+}, editProfileForm);
 
 export const elements = document.querySelector('#elements__list');
 
@@ -15,6 +23,13 @@ export const createElementPopUp = document.querySelector('#create-element-pop-up
 export const createElementForm = document.forms.createElement;
 export const createElementNameInput = createElementForm.querySelector('.edit-form__text-input_type_element-name');
 export const createElementImgLinkInput = createElementForm.querySelector('.edit-form__text-input_element-img-link');
+export const createElementFormValidator = new FormValidator({
+    inputSelector: '.edit-form__text-input',
+    submitButtonSelector: '.edit-form__submit-button',
+    inactiveButtonClass: 'edit-form__submit-button_disabled',
+    inputErrorClass: 'edit-form__text-input_error',
+    inputSpanErrorClass: '`edit-form__span-error_active`'
+}, createElementForm);
 
 export const imagePopUp = document.querySelector('#large-image-pop-up');
 export const imagePopUpImage = imagePopUp.querySelector('.pop-up-figure__image');

@@ -1,14 +1,15 @@
 import {
     createElementForm,
+    createElementFormValidator,
     createElementImgLinkInput,
-    createElementNameInput, createElementPopUp, editProfileForm,
+    createElementNameInput, createElementPopUp,
+    editProfileFormValidator,
     editProfileJobInput,
     editProfileNameInput,
     editProfilePopUp, elements, initialCards,
     profileJob,
     profileName
 } from "./consts.js";
-import {FormValidator} from "./FormValidator.js"
 import {Card} from "./Card.js"
 
 function submitEditProfileFormHandler (evt) {
@@ -24,11 +25,7 @@ function openEditProfileFormHandler() {
     editProfileNameInput.value = profileName.textContent;
     editProfileJobInput.value = profileJob.textContent;
     openPopUp(editProfilePopUp);
-    new FormValidator({
-        inputSelector: '.edit-form__text-input',
-        submitButtonSelector: '.edit-form__submit-button',
-        inactiveButtonClass: 'edit-form__submit-button_disabled',
-    }, editProfileForm).toggleButtonState()
+    editProfileFormValidator.toggleButtonState()
 }
 
 
@@ -62,11 +59,7 @@ function submitCreateElementFormHandler(evt) {
 
 function openCreateElementFormHandler() {
     openPopUp(createElementPopUp);
-    new FormValidator({
-        inputSelector: '.edit-form__text-input',
-        submitButtonSelector: '.edit-form__submit-button',
-        inactiveButtonClass: 'edit-form__submit-button_disabled',
-    }, createElementForm).toggleButtonState()
+    createElementFormValidator.toggleButtonState()
 }
 
 
@@ -101,11 +94,6 @@ function initElements() {
     initialCards.forEach(value => addNewElement(value))
 }
 
-function enableValidation(validationSettings) {
-    const formList = Array.from(document.querySelectorAll(validationSettings.formSelector));
-    formList.forEach(formElement => new FormValidator(validationSettings, formElement).enable());
-}
-
 export {
     openEditProfileFormHandler,
     submitEditProfileFormHandler,
@@ -113,5 +101,5 @@ export {
     submitCreateElementFormHandler,
     setPopUpCommonBehavior,
     openPopUp,
-    initElements, enableValidation
+    initElements
 }

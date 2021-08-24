@@ -1,5 +1,6 @@
 import {
-    createElementForm, editProfileOpenButton, editProfileForm, createElementFormOpenButton
+    createElementForm, createElementFormValidator, createElementFormOpenButton,
+    editProfileFormValidator, editProfileOpenButton, editProfileForm
 } from './consts.js'
 import {
     openEditProfileFormHandler,
@@ -7,7 +8,6 @@ import {
     openCreateElementFormHandler,
     submitCreateElementFormHandler,
     setPopUpCommonBehavior,
-    enableValidation,
     initElements
 } from './functions.js'
 
@@ -22,12 +22,5 @@ createElementForm.addEventListener('submit', submitCreateElementFormHandler);
 setPopUpCommonBehavior(Array.from(document.querySelectorAll('.pop-up')));
 initElements();
 
-enableValidation({
-    formSelector: '.edit-form',
-    inputSelector: '.edit-form__text-input',
-    submitButtonSelector: '.edit-form__submit-button',
-    inactiveButtonClass: 'edit-form__submit-button_disabled',
-    inputErrorClass: 'edit-form__text-input_error',
-    inputSpanErrorClass: '`edit-form__span-error_active`',
-    errorClass: 'pop-up__error_visible'
-});
+createElementFormValidator.enable();
+editProfileFormValidator.enable();
