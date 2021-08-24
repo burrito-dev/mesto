@@ -1,15 +1,15 @@
 import {
     createElementForm,
-    createElementFormValidator,
     createElementImgLinkInput,
     createElementNameInput, createElementPopUp,
-    editProfileFormValidator,
     editProfileJobInput,
     editProfileNameInput,
     editProfilePopUp, elements, initialCards,
     profileJob,
     profileName
 } from "./consts.js";
+import {createElementFormValidator,
+        editProfileFormValidator} from './index.js'
 import {Card} from "./Card.js"
 
 function submitEditProfileFormHandler (evt) {
