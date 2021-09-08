@@ -1,23 +1,34 @@
-export const profileName = document.querySelector('.profile__name');
-export const profileJob = document.querySelector('.profile__job');
+export const userData = {
+    userNameSelector: '.profile__name',
+    userCaptionSelector: '.profile__job'
+}
 
-export const editProfilePopUp = document.querySelector('#edit-profile-pop-up');
+export const editProfilePopupSelector = '#edit-profile-pop-up';
 export const editProfileForm = document.forms.editProfile;
 export const editProfileNameInput = editProfileForm.querySelector('.edit-form__text-input_type_name');
 export const editProfileJobInput = editProfileForm.querySelector('.edit-form__text-input_type_job');
 export const editProfileOpenButton = document.querySelector('.profile__edit-button');
 
-export const elements = document.querySelector('#elements__list');
+export const cardTemplateSelector = '#element-template';
+export const cardsContainerSelector = '#elements__list';
 
-export const createElementFormOpenButton = document.querySelector('.profile__add-button');
-export const createElementPopUp = document.querySelector('#create-element-pop-up');
-export const createElementForm = document.forms.createElement;
-export const createElementNameInput = createElementForm.querySelector('.edit-form__text-input_type_element-name');
-export const createElementImgLinkInput = createElementForm.querySelector('.edit-form__text-input_element-img-link');
+export const createCardPopupSelector = '#create-element-pop-up';
+export const createCardFormOpenButton = document.querySelector('.profile__add-button');
+export const createCardForm = document.forms.createElement;
 
-export const imagePopUp = document.querySelector('#large-image-pop-up');
-export const imagePopUpImage = imagePopUp.querySelector('.pop-up-figure__image');
-export const imagePopUpCaption = imagePopUp.querySelector('.pop-up-figure__caption');
+
+
+export const formSettings = {
+    formSelector: '.edit-form',
+    formInputSelector: '.edit-form__text-input',
+    formSubmitButtonSelector: '.edit-form__submit-button',
+    formInactiveButtonClass: 'edit-form__submit-button_disabled',
+    formInputErrorClass: 'edit-form__text-input_error',
+    formInputSpanErrorClass: '`edit-form__span-error_active`'
+}
+
+
+export const imagePopupSelector = '#large-image-pop-up';
 
 export const initialCards = [
         {
@@ -46,3 +57,10 @@ export const initialCards = [
         }
     ];
 
+// id: dataSlug
+export const inputFieldsMapping = {
+    'create-element-name-input': 'name',
+    'create-element-url-input': 'link',
+    'edit-profile-name-input': 'name',
+    'edit-profile-job-input': 'caption'
+}
