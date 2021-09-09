@@ -10,7 +10,10 @@ export default class Card {
         this._title = this._element.querySelector('.element__header');
         this._likeButton = this._element.querySelector('.element__like');
         this._trashButton = this._element.querySelector('.element__trash');
+        // handlers
         this._handleCardClick = handleCardClick;
+        this._elementLikeHandler = this._elementLikeHandler.bind(this);
+        this._elementTrashHandler = this._elementTrashHandler.bind(this);
     }
     create() {
         this._setEventListeners();
@@ -32,10 +35,10 @@ export default class Card {
             .cloneNode(true);
     }
     // handlers
-    _elementLikeHandler(evt) {
-        evt.target.classList.toggle('element__like_active');
+    _elementLikeHandler() {
+        this._element.classList.toggle('element__like_active');
     }
-    _elementTrashHandler(evt) {
-        evt.target.closest('.element').remove();
+    _elementTrashHandler() {
+        this._element.remove();
     }
 }
