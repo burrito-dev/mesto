@@ -20,7 +20,6 @@ import UserInfo from "./UserInfo.js";
 
 
 export const editProfileFormValidator = new FormValidator(formSettings, editProfileForm);
-
 export const createCardFormValidator = new FormValidator(formSettings, createCardForm);
 
 const userInfo = new UserInfo(userData);
