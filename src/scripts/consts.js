@@ -1,6 +1,7 @@
-export const userData = {
+export const userSelectors = {
     userNameSelector: '.profile__name',
-    userCaptionSelector: '.profile__job'
+    userCaptionSelector: '.profile__job',
+    userAvatarSelector: '.profile__avatar'
 }
 
 export const editProfilePopupSelector = '#edit-profile-pop-up';
@@ -62,5 +63,5 @@ export const inputFieldsMapping = {
     'create-element-name-input': 'name',
     'create-element-url-input': 'link',
     'edit-profile-name-input': 'name',
-    'edit-profile-job-input': 'caption'
+    'edit-profile-job-input': 'about'
 }
