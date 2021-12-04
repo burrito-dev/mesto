@@ -4,10 +4,11 @@ export default class Api {
         this.headers = options.headers;
     }
 
-    _sendRequest(method, path, errorData, body) {
+    _sendRequest(method, path, body) {
         if (body != null) {
-            body = JSON.stringify(body)
+            body = JSON.stringify(body);
         }
+
         return fetch(`${this.baseUrl}/${path}`, {
             method: method,
             headers: this.headers,
@@ -17,27 +18,37 @@ export default class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Can't update ${path}: ${res.status}`);
+                const errorMessage = `Can't ${method} ${path}: ${res.status}`
+                console.log(errorMessage)
+                return Promise.reject(errorMessage);
             })
             .then(data => {
                 return data;
             })
-            .catch(error => {
-                console.error(error);
-                return errorData;
-            })
     }
     getInitialCards() {
-        return this._sendRequest('GET','cards', [])
+        return this._sendRequest('GET','cards');
     }
     getUserInfo() {
-        return this._sendRequest('GET','users/me', {})
+        return this._sendRequest('GET','users/me');
     }
     setUserInfo(data) {
-        return this._sendRequest('PATCH', 'users/me',  {}, data)
+        return this._sendRequest('PATCH', 'users/me', data);
     }
     postCard(data) {
-        return this._sendRequest('POST', 'cards',  {}, data)
+        return this._sendRequest('POST', 'cards', data);
+    }
+    deleteCard(cardId) {
+        return this._sendRequest('DELETE', `cards/${cardId}`);
+    }
+    likeCard(cardId) {
+        return this._sendRequest('PUT', `cards/${cardId}/likes`);
+    }
+    dislikeCard(cardId) {
+        return this._sendRequest('DELETE', `cards/${cardId}/likes`);
+    }
+    setUserAvatar(avatar) {
+        return this._sendRequest('PATCH', 'users/me/avatar',{avatar});
     }
 
 

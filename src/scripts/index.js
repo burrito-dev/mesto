@@ -8,8 +8,18 @@ import {
     cardsContainerSelector,
     cardTemplateSelector,
     createCardPopupSelector,
-    editProfilePopupSelector, userSelectors, formSettings, editProfileNameInput, editProfileJobInput
+    removeElementPopupSelector,
+    editProfileAvatarPopupSelector,
+    editProfilePopupSelector,
+    editProfileAvatarForm,
+    editProfileAvatarOpenButton,
+    userSelectors,
+    formSettings,
+    editProfileNameInput,
+    editProfileJobInput,
+    editProfileAvatarInput
 } from './consts.js';
+
 import {FormValidator} from "./FormValidator.js";
 import Section from "./Section.js";
 import Card from "./Card.js";
@@ -19,6 +29,7 @@ import UserInfo from "./UserInfo.js";
 import Api from "./Api.js";
 
 export const editProfileFormValidator = new FormValidator(formSettings, editProfileForm);
+export const editProfileAvatarFormValidator = new FormValidator(formSettings, editProfileAvatarForm);
 export const createCardFormValidator = new FormValidator(formSettings, createCardForm);
 
 
@@ -33,20 +44,51 @@ const api = new Api({
 const userInfo = new UserInfo(userSelectors);
 
 api.getUserInfo().then(userData => {
-    console.log(userData);
     userInfo.setUserInfo(userData);
 })
 
-
 api.getInitialCards().then(initialCards => {
-    console.log(initialCards);
     const cardsSection = new Section({
-        items: initialCards,
+        items: initialCards.reverse(),
         renderer: (cardData) => {
             const card = new Card({
+                myUserId: userInfo.getId(),
                 data: cardData,
                 handleCardClick: () => {
                     popupWithImage.open(cardData);
+                },
+                handleTrashClick: () => {
+                    const removeElementPopup = new PopupWithForm(
+                        removeElementPopupSelector,
+                        (evt) => {
+                        evt.preventDefault();
+                        removeElementPopup.changeButtonText('Удаление...');
+                        api.deleteCard(card.getId())
+                            .then(deleteData => {
+                                card.remove();
+                                removeElementPopup.close();
+                                removeElementPopup.changeButtonText();
+                            })
+                            .catch(removeElementPopup.changeButtonText)
+                        },
+                        () => {}
+                    );
+                    removeElementPopup.open()
+                },
+                handleLikeClick: () => {
+                    if (card.isLiked()) {
+                        api.dislikeCard(card.getId())
+                            .then(data => {
+                                card.like(data.likes);
+                            })
+                            .catch()
+                    } else {
+                        api.likeCard(card.getId())
+                            .then(data => {
+                                card.like(data.likes);
+                            })
+                            .catch()
+                    }
                 }
             }, cardTemplateSelector);
             const cardElement = card.create();
@@ -59,14 +101,16 @@ api.getInitialCards().then(initialCards => {
         createCardPopupSelector,
         (evt) => {
             evt.preventDefault();
+            createCardPopup.changeButtonText('Сохранение...');
             const cardData = createCardPopup.getInputValues();
-            api.postCard(cardData).then(cardData => {
-                if (cardData) {
+            api.postCard(cardData)
+                .then(cardData => {
                     cardsSection.renderer(cardData);
-                }
-            })
-            createCardPopup.close();
-            createCardForm.reset();
+                    createCardPopup.close();
+                    createCardForm.reset();
+                    createCardPopup.changeButtonText();
+                })
+                .catch(createCardPopup.changeButtonText)
         },
         () => {
             createCardFormValidator.toggleButtonState();
@@ -78,13 +122,15 @@ api.getInitialCards().then(initialCards => {
         (evt) => {
             evt.preventDefault();
             const userData = editProfilePopup.getInputValues();
+            editProfilePopup.changeButtonText('Сохранение...');
             api.setUserInfo(userData)
                 .then(userData => {
-                    if (userData) {
-                        userInfo.setUserInfo(userData);
-                    }
+                    userInfo.setUserInfo(userData);
                     editProfilePopup.close();
+                    editProfilePopup.changeButtonText()
                 })
+                .catch(editProfilePopup.changeButtonText)
+
         },
         () => {
             const userData = userInfo.getUserInfo();
@@ -93,7 +139,28 @@ api.getInitialCards().then(initialCards => {
             editProfileFormValidator.toggleButtonState();
         }
     );
+    const editProfileAvatarPopup = new PopupWithForm(
+        editProfileAvatarPopupSelector,
+        (evt) => {
+            evt.preventDefault();
+            const userData = editProfileAvatarPopup.getInputValues();
+            editProfileAvatarPopup.changeButtonText('Сохранение...');
+            api.setUserAvatar(userData.avatar)
+                .then(userData => {
+                    userInfo.setUserInfo(userData);
+                    editProfileAvatarPopup.close();
+                    editProfileAvatarPopup.changeButtonText();
+                    })
+                .catch(editProfileAvatarPopup.changeButtonText)
+        },
+        () => {
+            const userData = userInfo.getUserInfo();
+            editProfileAvatarInput.value = userData.avatar;
+            editProfileAvatarFormValidator.toggleButtonState();
+        }
+    );
     editProfileOpenButton.addEventListener('click', editProfilePopup.open.bind(editProfilePopup));
+    editProfileAvatarOpenButton.addEventListener('click', editProfileAvatarPopup.open.bind(editProfileAvatarPopup));
 
 
     createCardFormOpenButton.addEventListener('click', createCardPopup.open.bind(createCardPopup));

@@ -10,6 +10,11 @@ export const editProfileNameInput = editProfileForm.querySelector('.edit-form__t
 export const editProfileJobInput = editProfileForm.querySelector('.edit-form__text-input_type_job');
 export const editProfileOpenButton = document.querySelector('.profile__edit-button');
 
+export const editProfileAvatarPopupSelector = '#edit-profile-avatar-pop-up';
+export const editProfileAvatarForm = document.forms.editProfileAvatar;
+export const editProfileAvatarInput = editProfileAvatarForm.querySelector('.edit-form__text-input_element-avatar-link');
+export const editProfileAvatarOpenButton = document.querySelector('.profile__avatar-zone');
+
 export const cardTemplateSelector = '#element-template';
 export const cardsContainerSelector = '#elements__list';
 
@@ -17,6 +22,7 @@ export const createCardPopupSelector = '#create-element-pop-up';
 export const createCardFormOpenButton = document.querySelector('.profile__add-button');
 export const createCardForm = document.forms.createElement;
 
+export const removeElementPopupSelector = '#remove-element-pop-up';
 
 
 export const formSettings = {
@@ -31,37 +37,12 @@ export const formSettings = {
 
 export const imagePopupSelector = '#large-image-pop-up';
 
-export const initialCards = [
-        {
-            name: 'Архыз',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-        },
-        {
-            name: 'Челябинская область',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-        },
-        {
-            name: 'Иваново',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-        },
-        {
-            name: 'Камчатка',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-        },
-        {
-            name: 'Холмогорский район',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-        },
-        {
-            name: 'Байкал',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-        }
-    ];
-
 // id: dataSlug
 export const inputFieldsMapping = {
     'create-element-name-input': 'name',
     'create-element-url-input': 'link',
     'edit-profile-name-input': 'name',
-    'edit-profile-job-input': 'about'
+    'edit-profile-job-input': 'about',
+    'edit-profile-avatar-input': 'avatar'
 }
+

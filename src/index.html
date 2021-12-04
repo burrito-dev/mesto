@@ -14,7 +14,10 @@
     <main class="main page__main">
         <section class="profile ">
             <div class="profile__zone">
-                <img src="<%=require('./images/profile_avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+                <div class="profile__avatar-zone">
+                    <img src="<%=require('./images/profile_avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+                    <img src="<%=require('./images/edit-pen.svg')%>" alt="Ручка" class="profile__avatar-cover">
+                </div>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <button aria-label="редактировать"  type="button" class="profile__edit-button"></button>
@@ -42,6 +45,15 @@
             <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Сохранить</button>
         </form>
     </div>
+    <div class="pop-up" id="edit-profile-avatar-pop-up" tabindex="0">
+        <form class="edit-form" method="POST" name="editProfileAvatar" novalidate>
+            <button aria-label="закрыть"  type="button" class="edit-form__close-button pop-up__close-button"></button>
+            <h3 class="edit-form__header">Обновить аватар</h3>
+            <input type="url" placeholder="Ссылка на аватар" class="edit-form__text-input edit-form__text-input_element-avatar-link" id="edit-profile-avatar-input" required>
+            <span class="edit-form__span-error" id="edit-profile-avatar-url-input-error"></span>
+            <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Сохранить</button>
+        </form>
+    </div>
     <div class="pop-up" id="create-element-pop-up" tabindex="0">
         <form class="edit-form" method="POST" name="createElement" novalidate>
             <button aria-label="закрыть"  type="button" class="edit-form__close-button pop-up__close-button"></button>
@@ -51,6 +63,13 @@
             <input type="url" placeholder="Ссылка на картинку" class="edit-form__text-input edit-form__text-input_element-img-link" id="create-element-url-input" required>
             <span class="edit-form__span-error" id="create-element-url-input-error"></span>
             <button aria-label="отправить"  type="submit" class="edit-form__submit-button">Создать</button>
+        </form>
+    </div>
+    <div class="pop-up" id="remove-element-pop-up" tabindex="0">
+        <form class="edit-form" method="POST" name="removeElement" novalidate>
+            <button aria-label="закрыть"  type="button" class="edit-form__close-button pop-up__close-button"></button>
+            <h3 class="edit-form__header">Вы уверены?</h3>
+            <button aria-label="да"  type="submit" class="edit-form__submit-button">Да</button>
         </form>
     </div>
     <div class="pop-up" id="large-image-pop-up" tabindex="0">

@@ -1,0 +1,10 @@
+.profile__avatar-cover {
+    display: flex;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    top: calc(50% - 13px);
+    left: calc(50% - 13px);
+}
