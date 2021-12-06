@@ -18,12 +18,7 @@ export default class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                const errorMessage = `Can't ${method} ${path}: ${res.status}`
-                console.log(errorMessage)
-                return Promise.reject(errorMessage);
-            })
-            .then(data => {
-                return data;
+                return Promise.reject(`Can't ${method} ${path}: ${res.status}`);
             })
     }
     getInitialCards() {
@@ -50,7 +45,4 @@ export default class Api {
     setUserAvatar(avatar) {
         return this._sendRequest('PATCH', 'users/me/avatar',{avatar});
     }
-
-
-  // другие методы работы с API
 }

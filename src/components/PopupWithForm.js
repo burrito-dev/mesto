@@ -1,5 +1,5 @@
 import Popup from "./Popup.js";
-import {inputFieldsMapping, formSettings} from "./consts.js";
+import {inputFieldsMapping, formSettings} from "../utils/consts.js";
 
 
 export default class PopupWithForm extends Popup {
@@ -14,9 +14,9 @@ export default class PopupWithForm extends Popup {
         this.setEventListeners();
         this.changeButtonText = this.changeButtonText.bind(this);
     }
-    open() {
+    open(data) {
         super.open();
-        this._onOpen();
+        this._onOpen(data);
     }
     getInputValues() {
         const inputValues = {};

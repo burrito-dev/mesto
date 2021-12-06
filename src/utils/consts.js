@@ -12,7 +12,7 @@ export const editProfileOpenButton = document.querySelector('.profile__edit-butt
 
 export const editProfileAvatarPopupSelector = '#edit-profile-avatar-pop-up';
 export const editProfileAvatarForm = document.forms.editProfileAvatar;
-export const editProfileAvatarInput = editProfileAvatarForm.querySelector('.edit-form__text-input_element-avatar-link');
+export const editProfileAvatarInput = editProfileAvatarForm.querySelector('.edit-form__text-input_element-avatar-url');
 export const editProfileAvatarOpenButton = document.querySelector('.profile__avatar-zone');
 
 export const cardTemplateSelector = '#element-template';

@@ -13,6 +13,7 @@ export class FormValidator {
         // handlers
         this._inputElementValidationHandler = this._inputElementValidationHandler.bind(this);
         this.toggleButtonState = this.toggleButtonState.bind(this);
+        this.resetValidation = this.resetValidation.bind(this);
     }
     enable() {
         this._inputElementList.forEach(inputElement => this._setInputElementHandlers(inputElement));
@@ -49,6 +50,16 @@ export class FormValidator {
             this._buttonElement.classList.remove(this._inactiveButtonClass);
             this._buttonElement.removeAttribute('disabled');
         }
+    }
+    resetValidation() {
+      this.toggleButtonState();
+
+      this._inputElementList.forEach(inputElement => {
+        if (inputElement.value === '') {
+            const spanError = document.querySelector(`#${inputElement.id}-error`);
+            this._formInputElementHideError(inputElement, spanError)
+        }});
+
     }
     _hasInvalidInput() {
         return this._inputElementList.some(inputElement => {

@@ -1,4 +1,4 @@
-import '../pages/index.css';
+import './index.css';
 import {
     createCardForm,
     createCardFormOpenButton,
@@ -18,15 +18,15 @@ import {
     editProfileNameInput,
     editProfileJobInput,
     editProfileAvatarInput
-} from './consts.js';
+} from '../utils/consts.js';
 
-import {FormValidator} from "./FormValidator.js";
-import Section from "./Section.js";
-import Card from "./Card.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js"
-import UserInfo from "./UserInfo.js";
-import Api from "./Api.js";
+import {FormValidator} from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import Card from "../components/Card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js"
+import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 export const editProfileFormValidator = new FormValidator(formSettings, editProfileForm);
 export const editProfileAvatarFormValidator = new FormValidator(formSettings, editProfileAvatarForm);
@@ -43,11 +43,27 @@ const api = new Api({
 
 const userInfo = new UserInfo(userSelectors);
 
-api.getUserInfo().then(userData => {
-    userInfo.setUserInfo(userData);
-})
+Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
+    ([userData, initialCards]) => {
+        userInfo.setUserInfo(userData);
 
-api.getInitialCards().then(initialCards => {
+    const removeElementPopup = new PopupWithForm(
+        removeElementPopupSelector,
+        (evt) => {
+        evt.preventDefault();
+        removeElementPopup.changeButtonText('Удаление...');
+        api.deleteCard(removeElementPopup.card.getId())
+            .then(deleteData => {
+                removeElementPopup.card.remove();
+                removeElementPopup.close();
+            })
+            .catch(console.log)
+            .finally(removeElementPopup.changeButtonText)
+        },
+        (card) => {
+            removeElementPopup.card = card;
+        }
+    );
     const cardsSection = new Section({
         items: initialCards.reverse(),
         renderer: (cardData) => {
@@ -58,22 +74,7 @@ api.getInitialCards().then(initialCards => {
                     popupWithImage.open(cardData);
                 },
                 handleTrashClick: () => {
-                    const removeElementPopup = new PopupWithForm(
-                        removeElementPopupSelector,
-                        (evt) => {
-                        evt.preventDefault();
-                        removeElementPopup.changeButtonText('Удаление...');
-                        api.deleteCard(card.getId())
-                            .then(deleteData => {
-                                card.remove();
-                                removeElementPopup.close();
-                                removeElementPopup.changeButtonText();
-                            })
-                            .catch(removeElementPopup.changeButtonText)
-                        },
-                        () => {}
-                    );
-                    removeElementPopup.open()
+                    removeElementPopup.open(card)
                 },
                 handleLikeClick: () => {
                     if (card.isLiked()) {
@@ -81,18 +82,17 @@ api.getInitialCards().then(initialCards => {
                             .then(data => {
                                 card.like(data.likes);
                             })
-                            .catch()
+                            .catch(console.log)
                     } else {
                         api.likeCard(card.getId())
                             .then(data => {
                                 card.like(data.likes);
                             })
-                            .catch()
+                            .catch(console.log)
                     }
                 }
             }, cardTemplateSelector);
-            const cardElement = card.create();
-            cardsSection.addItem(cardElement, true);
+            return card.create();
         }
     }, cardsContainerSelector);
     cardsSection.renderItems();
@@ -105,15 +105,15 @@ api.getInitialCards().then(initialCards => {
             const cardData = createCardPopup.getInputValues();
             api.postCard(cardData)
                 .then(cardData => {
-                    cardsSection.renderer(cardData);
+                    cardsSection.addItem(cardData);
                     createCardPopup.close();
                     createCardForm.reset();
-                    createCardPopup.changeButtonText();
                 })
-                .catch(createCardPopup.changeButtonText)
+                .catch(console.log)
+                .finally(createCardPopup.changeButtonText)
         },
         () => {
-            createCardFormValidator.toggleButtonState();
+            createCardFormValidator.resetValidation();
         }
     );
 
@@ -127,9 +127,9 @@ api.getInitialCards().then(initialCards => {
                 .then(userData => {
                     userInfo.setUserInfo(userData);
                     editProfilePopup.close();
-                    editProfilePopup.changeButtonText()
                 })
-                .catch(editProfilePopup.changeButtonText)
+                .catch(console.log)
+                .finally(editProfilePopup.changeButtonText)
 
         },
         () => {
@@ -149,9 +149,9 @@ api.getInitialCards().then(initialCards => {
                 .then(userData => {
                     userInfo.setUserInfo(userData);
                     editProfileAvatarPopup.close();
-                    editProfileAvatarPopup.changeButtonText();
                     })
-                .catch(editProfileAvatarPopup.changeButtonText)
+                .catch(console.log)
+                .finally(editProfileAvatarPopup.changeButtonText)
         },
         () => {
             const userData = userInfo.getUserInfo();
@@ -168,6 +168,7 @@ api.getInitialCards().then(initialCards => {
 
     const popupWithImage = new PopupWithImage(imagePopupSelector);
 
-})
+}).catch(console.log);
 createCardFormValidator.enable();
 editProfileFormValidator.enable();
+editProfileAvatarFormValidator.enable();
